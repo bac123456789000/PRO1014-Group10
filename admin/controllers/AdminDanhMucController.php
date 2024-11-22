@@ -30,19 +30,19 @@ class AdminDanhMucController
         // Kiểm tra xem dữ liệu có phải đc submit lên ko
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Lấy ra dữ liệu
-            $ten_danh_muc = $_POST['ten_danh_muc'];
-            $mo_ta = $_POST['mo_ta'];
+            $name = $_POST['ten_danh_muc'];
+            $Description = $_POST['mo_ta'];
 
             // Tạo mảng trống để chứa dữ liệu
             $errors = [];
-            if (empty($ten_danh_muc)) {
+            if (empty($name)) {
                 $errors['ten_danh_muc'] = 'Tên danh mục không được bỏ trống';
             }
 
             // Nếu ko có lỗi thì tiến hành thêm danh mục
             if (empty($errors)) {
                 // Nếu ko có lỗi thì tiến hành thêm danh mục
-                $this->modelDanhMuc->insertDanhMuc($ten_danh_muc, $mo_ta);
+                $this->modelDanhMuc->insertDanhMuc($name, $Description);
 
                 header("Location: " . BASE_URL_ADMIN . '?act=danh-muc');
                 exit();
@@ -75,25 +75,25 @@ class AdminDanhMucController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Lấy ra dữ liệu
             $id = $_POST['id'];
-            $ten_danh_muc = $_POST['ten_danh_muc'];
-            $mo_ta = $_POST['mo_ta'];
+            $name = $_POST['name'];
+            $Description = $_POST['Description'];
 
             // Tạo 1 mảng trống để chứa dữ liệu
             $errors = [];
-            if (empty($ten_danh_muc)) {
-                $errors['ten_danh_muc'] = 'Tên danh mục không được bỏ trống';
+            if (empty($name)) {
+                $errors['name'] = 'Tên danh mục không được bỏ trống';
             }
 
             // Nếu ko có lỗi thì tiến hành sửa danh mục
             if (empty($errors)) {
                 // Nếu ko có lỗi thì tiến hành sửa danh mục
-                $this->modelDanhMuc->updateDanhMuc($id, $ten_danh_muc, $mo_ta);
+                $this->modelDanhMuc->updateDanhMuc($id, $name, $Description);
 
                 header("Location: " . BASE_URL_ADMIN . '?act=danh-muc');
                 exit();
             } else {
                 // Trả về form và lỗi
-                $danhMuc = ['id' => $id, 'ten_danh_muc' => $ten_danh_muc, 'mo_ta' => $mo_ta];
+                $danhMuc = ['id' => $id, 'name' => $name, 'Description' => $Description];
                 require_once './views/danhmuc/editDanhMuc.php';
             }
         }

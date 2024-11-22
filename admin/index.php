@@ -7,16 +7,18 @@ require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
+require_once './controllers/AdminBaoCaoThongKeController.php';
+
 require_once './controllers/AdminDanhMucController.php';
 require_once './controllers/AdminSanPhamController.php';
 require_once './controllers/AdminDonHangController.php';
-require_once './controllers/AdminTaiKhoanController.php';
+// require_once './controllers/AdminTaiKhoanController.php';
 
 // Require toàn bộ file Models
 require_once './models/AdminDanhMuc.php';
 require_once './models/AdminSanPham.php';
 require_once './models/AdminDonHang.php';
-require_once './models/AdminTaiKhoan.php';
+// require_once './models/AdminTaiKhoan.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -27,6 +29,7 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // route báo cáo thống kê - trang chủ
     '/' => (new AdminBaoCaoThongKeController())->home(),
+    
     // route danh mục
     'danh-muc' =>(new AdminDanhMucController())->danhSachDanhMuc(),
 
@@ -70,9 +73,9 @@ match ($act) {
 
     // route quản lý tài khoản
     // Quản lý tài khoản quản trị
-    'list-tai-khoan-quan-tri' =>(new AdminTaiKhoanController())->danhSachQuanTri(),
+    // 'list-tai-khoan-quan-tri' =>(new AdminTaiKhoanController())->danhSachQuanTri(),
 
-    'form-them-quan-tri' =>(new AdminTaiKhoanController())->formAddQuanTri(),
+    // 'form-them-quan-tri' =>(new AdminTaiKhoanController())->formAddQuanTri(),
 
-    'them-quan-tri' =>(new AdminTaiKhoanController())->postAddQuanTri(),
+    // 'them-quan-tri' =>(new AdminTaiKhoanController())->postAddQuanTri(),
 };

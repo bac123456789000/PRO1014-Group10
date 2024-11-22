@@ -1,5 +1,5 @@
 <?php
-    class AdminSanPham{
+    class AdminSanPham{ 
         public $conn;
 
         public function __construct()
@@ -9,7 +9,7 @@
 
         public function getAllSanPham(){
             try{
-                $sql = 'SELECT san_phams.*, danh_mucs.ten_danh_muc
+                $sql = 'SELECT san_phams.*, danh_mucs.name
                     FROM san_phams
                     INNER JOIN danh_mucs ON san_phams.danh_muc_id = danh_mucs.id
                 ';
@@ -69,7 +69,7 @@
 
         public function getDetailSanPham($id){
             try{
-                $sql = 'SELECT san_phams.*, danh_mucs.ten_danh_muc
+                $sql = 'SELECT san_phams.*, danh_mucs.name
                 FROM san_phams
                 INNER JOIN danh_mucs ON san_phams.danh_muc_id = danh_mucs.id 
                 WHERE san_phams.id = :id';

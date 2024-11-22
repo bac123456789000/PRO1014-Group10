@@ -12,7 +12,7 @@ class AdminDanhMuc
     public function getAllDanhMuc()
     {
         try {
-            $sql = "SELECT * FROM danh_mucs";
+            $sql = "SELECT * FROM categories";
 
             $stmt = $this->conn->prepare($sql);
 
@@ -24,17 +24,16 @@ class AdminDanhMuc
         }
     }
 
-    public function insertDanhMuc($ten_danh_muc, $mo_ta)
+    public function insertDanhMuc($name, $Description)
     {
         try {
-            $sql = "INSERT INTO danh_mucs (ten_danh_muc, mo_ta)
-                    VALUES (:ten_danh_muc, :mo_ta)";
+            $sql = "INSERT INTO `categories` ( `name`, `Description`) VALUES (`:name`,`:Description`)";
 
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([
-                ":ten_danh_muc" => $ten_danh_muc,
-                ":mo_ta" => $mo_ta
+                ":name" => $name,
+                ":Description" => $Description
             ]);
 
             return true;
@@ -46,7 +45,7 @@ class AdminDanhMuc
     public function getDetailDanhMuc($id)
     {
         try {
-            $sql = "SELECT * FROM danh_mucs WHERE id = :id";
+            $sql = "SELECT * FROM categories WHERE id = :id";
 
             $stmt = $this->conn->prepare($sql);
 
@@ -60,16 +59,16 @@ class AdminDanhMuc
         }
     }
 
-    public function updateDanhMuc($id, $ten_danh_muc, $mo_ta)
+    public function updateDanhMuc($id, $name, $Description)
     {
         try {
-            $sql = "UPDATE danh_mucs SET ten_danh_muc = :ten_danh_muc, mo_ta = :mo_ta WHERE id = :id";
+            $sql = "UPDATE categories SET name = :name, Description = :Description WHERE id = :id";
 
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([
-                ":ten_danh_muc" => $ten_danh_muc,
-                ":mo_ta" => $mo_ta,
+                ":name" => $name,
+                ":Description" => $Description,
                 ":id" => $id
             ]);
 
@@ -82,7 +81,7 @@ class AdminDanhMuc
     public function destroyDanhMuc($id)
     {
         try {
-            $sql = "DELETE FROM danh_mucs WHERE id = :id";
+            $sql = "DELETE FROM categories WHERE id = :id";
 
             $stmt = $this->conn->prepare($sql);
 

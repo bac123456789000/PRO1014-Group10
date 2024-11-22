@@ -69,7 +69,7 @@
                             <button class="btn btn-warning"><i class="fas fa-cog"></i></button>
                           </a>
                           <a href="<?= BASE_URL_ADMIN . '?act=xoa-san-pham&id_san_pham=' . $sanPham['id'] ?>" onclick="return confirm('Bạn có muốn xóa hay không?')">
-                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>xóa</button>
                           </a>
                         </div>
                       </td>
